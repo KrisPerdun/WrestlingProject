@@ -51,16 +51,6 @@ class Match {
         winner.recordWin();
         loser.recordLoss()
 
-        // console.log("Winner:", winner.name);
-        // console.log("Finisher:", winner.finisher);
-        // console.log("Catchphrase:", winner.catchphrase);
-        
-        // if (loser.title !== "None") {
-        //     console.log(winner.name + " wins the " + loser.title);
-        //     winner.title = loser.title;
-        //     loser.title = "None";
-        // }
-
         this.history.push({
             winner: winner.name,
             loser: loser.name,
@@ -134,12 +124,36 @@ const laKnight = new Wrestler(
     "None"
 );
 
+const gunther = new Wrestler(
+    "Gunther",
+    "Raw",
+    "PowerBomb",
+    "The Ring General",
+    "Intercontinental Champion"
+);
+
+const rhea = new Wrestler(
+    "Rhea Ripley",
+    "Raw",
+    "Riptide",
+    "This is My Brutality",
+    "Woman's World Champion"
+);
+
+const bianca = new Wrestler(
+    "Bianca Belair",
+    "SmackDown",
+    "KOD",
+    "The EST of WWE",
+    "None"
+)
+
 // Creating instances of Matches
 const match1 = new Match(
     roman,
     cody,
     "Undisputed Title Match",
-    "Wrestlemania"
+    "WrestleMania"
 );
 
 const match2 = new Match(
@@ -153,7 +167,7 @@ const match2 = new Match(
 const matchCard = [match1, match2];
 
 //Storing Roster in an Array[]
-const roster = [roman, cody, seth, laKnight];
+const roster = [roman, cody, seth, laKnight, gunther, rhea, bianca];
 
 // Creating instances of PPV and running it
 const wrestleMania = new PPV("WrestleMania");
@@ -180,18 +194,29 @@ function showRankings(roster) {
 
 showRankings(roster);
 
-// // Run Matches
-// for (const match of matchCard) {
-//     match.startMatch();
-//     match.getWinner();
-// }
+function runBrandPPV(ppvName, matches,brand) {
+    console.log("PPV:", ppvName, "(" + brand + " ONLY");
 
-// // Show Final Stats
-// console.log("FINAl STATS");
-// for(const wrestler of roster) {
-//     console.log(wrestler.name);
-//     console.log("Wins:", wrestler.wins);
-//     console.log("Losses", wrestler.losses);
-//     console.log("Title:", wrestler.title);
-//     console.log ("-----------")
-// }
+    for (const match of matches) {
+        if (match.wrestler1.brand === brand && match.wrestler2.brand == brand) {
+            match.startMatch();
+            match.getWinner();
+        } else {
+            console.log("Match skipped (wrong brand):", match.wrestler1.name, "vs", match.wrestler2.name);
+        }
+    }
+}
+
+function showPPVRecap(matches) {
+    console.log("PPV RECAP RESULTS");
+
+    for (const match of matches) {
+        console.log("Match:", match.wrestler1.name, "vs", match.wrestler2.name);
+
+        for (const results of match.history) {
+            console.log(
+                "Event:", results.event
+            );
+        }
+    }
+}
