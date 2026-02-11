@@ -33,6 +33,7 @@ class Match {
         this.eventName = eventName;
 
         this.history = [];
+        this.rating = 0;
     }
 
     startMatch() {
@@ -59,6 +60,11 @@ class Match {
 
         console.log("Winner:", winner.name);
         console.log("-----------");
+    }
+
+    rateMatch() {
+        this.rating = Math.floor(Math.random() * 5) + 1;
+        console.log("Match Rating", "⭐".repeat(this.rating));
     }
 }
 
@@ -177,23 +183,6 @@ wrestleMania.addNight([match2]);
 
 wrestleMania.run();
 
-function showRankings(roster) {
-    const sorted = [...roster].sort((a, b) => b.wins - a.wins);
-
-    console.log("RANKINGS");
-    let rank = 1;
-    for (const wrestler of sorted) {
-        console.log(
-            rank + ". " +
-            wrestler.name +
-            " (" + wrestler.wins + " wins)"
-        );
-        rank++
-    }
-}
-
-showRankings(roster);
-
 function runBrandPPV(ppvName, matches,brand) {
     console.log("PPV:", ppvName, "(" + brand + " ONLY");
 
@@ -215,8 +204,17 @@ function showPPVRecap(matches) {
 
         for (const results of match.history) {
             console.log(
-                "Event:", results.event
+                "Event:", results.event,
+                "| Winner:", results.winner,
+                "| Loser:", results.loser
             );
         }
+
+        console.log("-----------");
     }
 }
+
+runBrandPPV("Raw Rumble", matchCard, "Raw");
+runBrandPPV("SmackDown Slam", matchCard, "SmackDown");
+ 
+showPPVRecap(matchCard);
