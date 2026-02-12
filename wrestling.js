@@ -73,6 +73,7 @@ class PPV {
     constructor(name) {
         this.name = name;
         this.nights =[];
+        this.history = [];
     }
 
     addNight(matches) {
@@ -108,6 +109,11 @@ class PPV {
             console.log(bestMatch.wrestler1.name, "vs", bestMatch.wrestler2.name);
             console.log("Rating:", "⭐".repeat(bestRating));
         }
+
+        this.history.push({
+            match: match.wrestler1.name + " vs " + match.wrestler2.name,
+            event: this.name
+        });
     }
 }
 
@@ -244,3 +250,28 @@ function showPPVRecap(matches) {
         }
     }
 }
+
+function printPPVCard(ppv) {
+    console.log("=== FULL PPV CARD FOR", ppv.name, "===");
+
+    let night = 1;
+    for (const matches of ppv.nights) {
+        console.log("Night" , night);
+
+        for (const match of matches) {
+            console.log(
+                match.wrestler1.name,
+                "vs",
+                match.wrestler2.name,
+                "|",
+                match.stipulation
+            );
+        }
+
+        night++;
+        console.log("-----------");
+    }
+}
+
+printPPVCard(wrestleMania);
+showRankings(roster);
