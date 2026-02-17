@@ -52,6 +52,12 @@ class Match {
         winner.recordWin();
         loser.recordLoss()
 
+        if (this.isTitleMatch && loser.title !== "None") {
+            console.log("TITLE CHANGE!"); 
+            winner.title = loser.title;
+            loser.title = "None"; 
+        }
+
         this.history.push({
             winner: winner.name,
             loser: loser.name,
