@@ -6,8 +6,10 @@ class Wrestler {
         this.finisher = finisher;
         this.catchphrase = catchphrase;
         this.title = title;
+
         this.wins = 0;
         this.losses = 0;
+        this.rivals =[];
     }
 
     intro() {
@@ -34,6 +36,8 @@ class Match {
 
         this.rating = 0;
         this.history = [];
+        this.crowdReaction = "";
+        this.isTitleMatch = false;
     }
 
     startMatch() {
@@ -43,15 +47,13 @@ class Match {
     }
 
     getWinner() {
-        const winner =
-            Math.random() > 0.5 ? this.wrestler1 : this.wrestler2;
-
-        const loser =
-            winner === this.wrestler1 ? this.wrestler2 : this.wrestler1;
+        const winner = Math.random() > 0.5 ? this.wrestler1 : this.wrestler2;
+        const loser = winner === this.wrestler1 ? this.wrestler2 : this.wrestler1;
 
         winner.recordWin();
         loser.recordLoss()
 
+        // Title Change Logic
         if (this.isTitleMatch && loser.title !== "None") {
             console.log("TITLE CHANGE!"); 
             winner.title = loser.title;
@@ -72,6 +74,18 @@ class Match {
         this.rating = Math.floor(Math.random() * 5) + 1;
         console.log("Match Rating:", "⭐".repeat(this.rating));
     }
+
+    reactCrowd() {
+        const reactions = [
+        "🔥 HUGE POP",
+        "😐 Mixed Reaction",
+        "👎 Loud Boos",
+        "👏 Standing Ovation"
+        ];
+        const index = Math.floor(Math.random() * reactions.length);
+        this.crowdReaction = reactions[index];
+        console.log("Crowd Reaction:", this.crowdReaction);
+    }
 }
 
 // PPV Class Definition
@@ -87,19 +101,25 @@ class PPV {
     }
 
     run() {
-        console.log("PPV:", this.name);
+         console.log("PPV:", this.name);
 
         let bestMatch = null;
         let bestRating = 0;
         let nightNumber = 1;
 
         for (const night of this.nights) {
-            console.log("Nights", nightNumber);
+            console.log("Night", nightNumber);
 
             for (const match of night) {
                 match.startMatch();
                 match.getWinner();
+                match.reactCrowd();
                 match.rateMatch();
+
+                this.history.push({
+                    match: match.wrestler1.name + " vs " + match.wrestler2.name,
+                    event: this.name
+                });
 
                 if (match.rating > bestRating) {
                     bestRating = match.rating;
@@ -115,16 +135,12 @@ class PPV {
             console.log(bestMatch.wrestler1.name, "vs", bestMatch.wrestler2.name);
             console.log("Rating:", "⭐".repeat(bestRating));
         }
-
-        this.history.push({
-            match: match.wrestler1.name + " vs " + match.wrestler2.name,
-            event: this.name
-        });
     }
 }
 
 
 // Creating instances of Wrestlers
+// Men Wrestlers
 const roman = new Wrestler(
     "Roman Reigns", 
     "SmackDown", 
@@ -165,6 +181,120 @@ const gunther = new Wrestler(
     "Intercontinental Champion"
 );
 
+const jey = new Wrestler(
+    "Jey Uso",
+    "Raw",
+    "Uso Splash",
+    "Yeet!",
+    "None"
+);
+
+const jimmy = new Wrestler(
+    "Jimmy Uso",
+    "SmackDown",
+    "Uso Splash",
+    "Nobody's Bitch!",
+    "None"
+);
+
+const drew = new Wrestler(
+    "Drew McIntyre",
+    "Raw",
+    "Claymore Kick",
+    "Scottish Warrior",
+    "None"
+);
+
+const sami = new Wrestler(
+    "Sami Zayn",
+    "Raw",
+    "Helluva Kick",
+    "Let's Go!",
+    "None"
+);
+
+const ko = new Wrestler(
+    "Kevin Owens",
+    "SmackDown",
+    "Stunner",
+    "Fight Owens Fight",
+    "None"
+);
+
+const logan = new Wrestler(
+    "Logan Paul",
+    "SmackDown",
+    "KO Punch",
+    "Prime Time",
+    "United States Champion"
+);
+
+const orton = new Wrestler(
+    "Randy Orton",
+    "SmackDown",
+    "RKO",
+    "The Viper",
+    "None"
+);
+
+const styles = new Wrestler(
+    "AJ Styles",
+    "SmackDown",
+    "Phenomenal Forearm",
+    "The Phenomenal One",
+    "None"
+);
+
+const rey = new Wrestler(
+    "Rey Mysterio",
+    "SmackDown",
+    "619",
+    "Who's That Jumpin' Out The Sky",
+    "None"
+);
+
+const balor = new Wrestler(
+    "Finn Balor",
+    "Raw",
+    "Coup de Grace",
+    "Prince",
+    "None"
+);
+
+const priest = new Wrestler(
+    "Damian Priest",
+    "Raw",
+    "South of Heaven",
+    "Archer of Infamy",
+    "None"
+);
+
+const sheamus = new Wrestler(
+    "Sheamus",
+    "Raw",
+    "Brogue Kick",
+    "Fella",
+    "None"
+);
+
+const miz = new Wrestler(
+    "The Miz",
+    "Raw",
+    "Skull Crushing Finale",
+    "Awesome!",
+    "None"
+);
+
+const solo = new Wrestler(
+    "Solo Sikoa",
+    "SmackDown",
+    "Samoan Spike",
+    "Enforcer",
+    "None"
+);
+
+//Women Wrestlers
+
 const rhea = new Wrestler(
     "Rhea Ripley",
     "Raw",
@@ -179,41 +309,168 @@ const bianca = new Wrestler(
     "KOD",
     "The EST of WWE",
     "None"
-)
-
-// Creating instances of Matches
-const match1 = new Match(
-    roman,
-    cody,
-    "Undisputed Title Match",
-    "WrestleMania"
 );
 
-const match2 = new Match(
-    seth,
-    laKnight,
-    "No Disqualification",
-    "Backlash"
+const becky = new Wrestler(
+    "Becky Lynch",
+    "Raw",
+    "Manhandle Slam",
+    "The Man",
+    "None"
 );
 
-//Storing Matches in an Array []
-const matchCard = [match1, match2];
+const charlotte = new Wrestler(
+    "Charlotte Flair",
+    "SmackDown",
+    "Natural Selection",
+    "The Queen",
+    "None"
+);
+
+const bayley = new Wrestler(
+    "Bayley",
+    "SmackDown",
+    "Rose Plant",
+    "Role Model",
+    "None"
+);
+
+const asuka = new Wrestler(
+    "Asuka",
+    "Raw",
+    "Asuka Lock",
+    "Nobody is Ready for Asuka",
+    "None"
+);
+
+const iyo = new Wrestler(
+    "Iyo Sky",
+    "SmackDown",
+    "Over the Moonsault",
+    "Genius of the Sky",
+    "None"
+);
+
+const liv = new Wrestler(
+    "Liv Morgan",
+    "Raw",
+    "Oblivion",
+    "Watch Me",
+    "None"
+);
+
+const nia = new Wrestler(
+    "Nia Jax",
+    "SmackDown",
+    "Annihilator",
+    "Irresistible Force",
+    "None"
+);
+
+const jade = new Wrestler(
+    "Jade Cargill",
+    "SmackDown",
+    "Jaded",
+    "That Bitch Show",
+    "None"
+);
+
+const tiffany = new Wrestler(
+    "Tiffany Stratton",
+    "SmackDown",
+    "Prettiest Moonsault Ever",
+    "It's Tiffy Time",
+    "None"
+);
+
+const raquel = new Wrestler(
+    "Raquel Rodriguez",
+    "Raw",
+    "Tejana Bomb",
+    "Big Mami Cool",
+    "None"
+);
+
+const natalya = new Wrestler(
+    "Natalya",
+    "Raw",
+    "Sharpshooter",
+    "Queen of Harts",
+    "None"
+);
+
+const shayna = new Wrestler(
+    "Shayna Baszler",
+    "Raw",
+    "Kirifuda Clutch",
+    "Queen of Spades",
+    "None"
+);
+
+const zelina = new Wrestler(
+    "Zelina Vega",
+    "SmackDown",
+    "Code Red",
+    "La Muñeca",
+    "None"
+);
 
 //Storing Roster in an Array[]
-const roster = [roman, cody, seth, laKnight, gunther, rhea, bianca];
+const roster = [roman, cody, seth, laKnight, gunther, jey, jimmy, drew, sami, ko, logan, orton, styles, rey, balor, priest, sheamus, miz, solo, rhea, bianca, becky, charlotte, bayley, asuka, iyo, liv, nia, jade, tiffany, raquel,natalya, shayna, zelina];
+
+function generateMatches(roster, eventName) {
+    const matches = [];
+    const shuffled = roster.slice(); // copy list
+
+    // Shuffle roster
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = shuffled[i];
+        shuffled[i] = shuffled[j];
+        shuffled[j] = temp;
+    }
+
+    for (let i = 0; i < shuffled.length; i += 2) {
+        if (shuffled[i + 1]) {
+            const match = new Match(shuffled[i], shuffled[i + 1], "Singles Match", eventName);
+            matches.push(match);
+        }
+    }
+
+    return matches;
+}
+
+function moveChampionsToMainEvent(matches) {
+    for (let i = 0; i < matches.length; i++) {
+        if (matches[i].wrestler1.title !== "None" || matches[i].wrestler2.title !== "None") {
+            const mainEvent = matches.splice(i, 1)[0];
+            matches.push(mainEvent);
+            mainEvent.isTitleMatch = true;
+            break;
+        }
+    }
+}
+
+
 
 // Creating instances of PPV and running it
 const wrestleMania = new PPV("WrestleMania");
 
-wrestleMania.addNight([match1]);
-wrestleMania.addNight([match2]);
+const night1 = generateMatches(roster, "WrestleMania Night 1");
+const night2 = generateMatches(roster, "WrestleMania Night 2");
+
+moveChampionsToMainEvent(night1);
+moveChampionsToMainEvent(night2);
+
+wrestleMania.addNight(night1);
+wrestleMania.addNight(night2);
 
 wrestleMania.run();
 
 function showRankings(roster) {
     console.log("=== WWE POWER RANKINGS ===");
 
-    const sorted = [...roster];
+    const sorted = roster.slice();
 
     sorted.sort(function(a, b){
         return b.wins - a.wins;
@@ -221,63 +478,11 @@ function showRankings(roster) {
 
     for (const wrestler of sorted) {
         console.log(
-            wrestler.wins,
+            wrestler.name,
             "| Wins:", wrestler.wins,
             "| Losses", wrestler.losses
         );
     }
 }
 
-showRankings(roster);
-
-function runBrandPPV(ppvName, matches,brand) {
-    console.log("PPV:", ppvName, "(" + brand + " ONLY");
-
-    for (const match of matches) {
-        if (match.wrestler1.brand === brand && match.wrestler2.brand == brand) {
-            match.startMatch();
-            match.getWinner();
-        } else {
-            console.log("Match skipped (wrong brand):", match.wrestler1.name, "vs", match.wrestler2.name);
-        }
-    }
-}
-
-function showPPVRecap(matches) {
-    console.log("PPV RECAP RESULTS");
-
-    for (const match of matches) {
-        console.log("Match:", match.wrestler1.name, "vs", match.wrestler2.name);
-
-        for (const results of match.history) {
-            console.log(
-                "Event:", results.event
-            );
-        }
-    }
-}
-
-function printPPVCard(ppv) {
-    console.log("=== FULL PPV CARD FOR", ppv.name, "===");
-
-    let night = 1;
-    for (const matches of ppv.nights) {
-        console.log("Night" , night);
-
-        for (const match of matches) {
-            console.log(
-                match.wrestler1.name,
-                "vs",
-                match.wrestler2.name,
-                "|",
-                match.stipulation
-            );
-        }
-
-        night++;
-        console.log("-----------");
-    }
-}
-
-printPPVCard(wrestleMania);
 showRankings(roster);
