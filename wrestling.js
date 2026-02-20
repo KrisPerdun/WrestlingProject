@@ -1,11 +1,12 @@
 // Main wrestling class definition
 class Wrestler {
-    constructor(name, brand, finisher, catchphrase, title) {
+    constructor(name, brand, finisher, catchphrase, title, gender) {
         this.name = name;
         this.brand = brand;
         this.finisher = finisher;
         this.catchphrase = catchphrase;
         this.title = title;
+        this.gender =gender;
 
         this.wins = 0;
         this.losses = 0;
@@ -146,7 +147,8 @@ const roman = new Wrestler(
     "SmackDown", 
     "Spear", 
     "Acknowledge Me", 
-    "Undisputed WWE Universal Champion"
+    "Undisputed WWE Universal Champion",
+    "male"
 );
 
 const cody = new Wrestler(
@@ -154,7 +156,8 @@ const cody = new Wrestler(
     "Raw", 
     "Cross Rhodes",
     "Finish the Story",
-    "None"
+    "None",
+    "male"
 );
 
 const seth = new Wrestler(
@@ -162,7 +165,8 @@ const seth = new Wrestler(
     "Raw", 
     "Curb Stomp",
     "Burn It Down",
-    "World Heavyweight Champion"
+    "World Heavyweight Champion",
+    "male"
 );
 
 const laKnight = new Wrestler(
@@ -170,7 +174,8 @@ const laKnight = new Wrestler(
     "SmackDown", 
     "BFT",
     "YEAH!",
-    "None"
+    "None",
+    "male"
 );
 
 const gunther = new Wrestler(
@@ -178,7 +183,8 @@ const gunther = new Wrestler(
     "Raw",
     "PowerBomb",
     "The Ring General",
-    "Intercontinental Champion"
+    "Intercontinental Champion",
+    "male"
 );
 
 const jey = new Wrestler(
@@ -186,7 +192,8 @@ const jey = new Wrestler(
     "Raw",
     "Uso Splash",
     "Yeet!",
-    "None"
+    "None",
+    "male"
 );
 
 const jimmy = new Wrestler(
@@ -194,7 +201,8 @@ const jimmy = new Wrestler(
     "SmackDown",
     "Uso Splash",
     "Nobody's Bitch!",
-    "None"
+    "None",
+    "male"
 );
 
 const drew = new Wrestler(
@@ -202,7 +210,8 @@ const drew = new Wrestler(
     "Raw",
     "Claymore Kick",
     "Scottish Warrior",
-    "None"
+    "None",
+    "male"
 );
 
 const sami = new Wrestler(
@@ -210,7 +219,8 @@ const sami = new Wrestler(
     "Raw",
     "Helluva Kick",
     "Let's Go!",
-    "None"
+    "None",
+    "male"
 );
 
 const ko = new Wrestler(
@@ -218,7 +228,8 @@ const ko = new Wrestler(
     "SmackDown",
     "Stunner",
     "Fight Owens Fight",
-    "None"
+    "None",
+    "male"
 );
 
 const logan = new Wrestler(
@@ -226,7 +237,8 @@ const logan = new Wrestler(
     "SmackDown",
     "KO Punch",
     "Prime Time",
-    "United States Champion"
+    "United States Champion",
+    "male"
 );
 
 const orton = new Wrestler(
@@ -234,7 +246,8 @@ const orton = new Wrestler(
     "SmackDown",
     "RKO",
     "The Viper",
-    "None"
+    "None",
+    "male"
 );
 
 const styles = new Wrestler(
@@ -242,7 +255,8 @@ const styles = new Wrestler(
     "SmackDown",
     "Phenomenal Forearm",
     "The Phenomenal One",
-    "None"
+    "None",
+    "male"
 );
 
 const rey = new Wrestler(
@@ -250,7 +264,8 @@ const rey = new Wrestler(
     "SmackDown",
     "619",
     "Who's That Jumpin' Out The Sky",
-    "None"
+    "None",
+    "male"
 );
 
 const balor = new Wrestler(
@@ -258,7 +273,8 @@ const balor = new Wrestler(
     "Raw",
     "Coup de Grace",
     "Prince",
-    "None"
+    "None",
+    "male"
 );
 
 const priest = new Wrestler(
@@ -266,7 +282,8 @@ const priest = new Wrestler(
     "Raw",
     "South of Heaven",
     "Archer of Infamy",
-    "None"
+    "None",
+    "male"
 );
 
 const sheamus = new Wrestler(
@@ -274,7 +291,8 @@ const sheamus = new Wrestler(
     "Raw",
     "Brogue Kick",
     "Fella",
-    "None"
+    "None",
+    "male"
 );
 
 const miz = new Wrestler(
@@ -282,7 +300,8 @@ const miz = new Wrestler(
     "Raw",
     "Skull Crushing Finale",
     "Awesome!",
-    "None"
+    "None",
+    "male"
 );
 
 const solo = new Wrestler(
@@ -290,7 +309,8 @@ const solo = new Wrestler(
     "SmackDown",
     "Samoan Spike",
     "Enforcer",
-    "None"
+    "None",
+    "male"
 );
 
 //Women Wrestlers
@@ -300,7 +320,8 @@ const rhea = new Wrestler(
     "Raw",
     "Riptide",
     "This is My Brutality",
-    "Woman's World Champion"
+    "Woman's World Champion",
+    "female"
 );
 
 const bianca = new Wrestler(
@@ -308,7 +329,8 @@ const bianca = new Wrestler(
     "SmackDown",
     "KOD",
     "The EST of WWE",
-    "None"
+    "None",
+    "female"
 );
 
 const becky = new Wrestler(
@@ -316,7 +338,8 @@ const becky = new Wrestler(
     "Raw",
     "Manhandle Slam",
     "The Man",
-    "None"
+    "None",
+    "female"
 );
 
 const charlotte = new Wrestler(
@@ -324,7 +347,8 @@ const charlotte = new Wrestler(
     "SmackDown",
     "Natural Selection",
     "The Queen",
-    "None"
+    "None",
+    "female"
 );
 
 const bayley = new Wrestler(
@@ -332,7 +356,8 @@ const bayley = new Wrestler(
     "SmackDown",
     "Rose Plant",
     "Role Model",
-    "None"
+    "None",
+    "female"
 );
 
 const asuka = new Wrestler(
@@ -340,7 +365,8 @@ const asuka = new Wrestler(
     "Raw",
     "Asuka Lock",
     "Nobody is Ready for Asuka",
-    "None"
+    "None",
+    "female"
 );
 
 const iyo = new Wrestler(
@@ -348,7 +374,8 @@ const iyo = new Wrestler(
     "SmackDown",
     "Over the Moonsault",
     "Genius of the Sky",
-    "None"
+    "None",
+    "female"
 );
 
 const liv = new Wrestler(
@@ -356,7 +383,8 @@ const liv = new Wrestler(
     "Raw",
     "Oblivion",
     "Watch Me",
-    "None"
+    "None",
+    "female"
 );
 
 const nia = new Wrestler(
@@ -364,7 +392,8 @@ const nia = new Wrestler(
     "SmackDown",
     "Annihilator",
     "Irresistible Force",
-    "None"
+    "None",
+    "female"
 );
 
 const jade = new Wrestler(
@@ -372,7 +401,8 @@ const jade = new Wrestler(
     "SmackDown",
     "Jaded",
     "That Bitch Show",
-    "None"
+    "None",
+    "female"
 );
 
 const tiffany = new Wrestler(
@@ -380,7 +410,8 @@ const tiffany = new Wrestler(
     "SmackDown",
     "Prettiest Moonsault Ever",
     "It's Tiffy Time",
-    "None"
+    "None",
+    "female"
 );
 
 const raquel = new Wrestler(
@@ -388,7 +419,8 @@ const raquel = new Wrestler(
     "Raw",
     "Tejana Bomb",
     "Big Mami Cool",
-    "None"
+    "None",
+    "female"
 );
 
 const natalya = new Wrestler(
@@ -396,7 +428,8 @@ const natalya = new Wrestler(
     "Raw",
     "Sharpshooter",
     "Queen of Harts",
-    "None"
+    "None",
+    "female"
 );
 
 const shayna = new Wrestler(
@@ -404,7 +437,8 @@ const shayna = new Wrestler(
     "Raw",
     "Kirifuda Clutch",
     "Queen of Spades",
-    "None"
+    "None",
+    "female"
 );
 
 const zelina = new Wrestler(
@@ -412,7 +446,8 @@ const zelina = new Wrestler(
     "SmackDown",
     "Code Red",
     "La Muñeca",
-    "None"
+    "None",
+    "female"
 );
 
 //Storing Roster in an Array[]
@@ -456,8 +491,20 @@ function moveChampionsToMainEvent(matches) {
 // Creating instances of PPV and running it
 const wrestleMania = new PPV("WrestleMania");
 
-const night1 = generateMatches(roster, "WrestleMania Night 1");
-const night2 = generateMatches(roster, "WrestleMania Night 2");
+const shuffledRoster = roster.slice();
+for (let i = shuffledRoster.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = shuffledRoster[i];
+    shuffledRoster[i] = shuffledRoster[j];
+    shuffledRoster[j] = temp;
+}
+
+// Split roster into two groups
+const rosterNight1 = shuffledRoster.slice(0, 10);  // 10 wrestlers = 5 matches
+const rosterNight2 = shuffledRoster.slice(10, 20); // next 10 wrestlers
+
+const night1 = generateMatches(rosterNight1, "WrestleMania Night 1");
+const night2 = generateMatches(rosterNight2, "WrestleMania Night 2");
 
 moveChampionsToMainEvent(night1);
 moveChampionsToMainEvent(night2);
@@ -477,11 +524,15 @@ function showRankings(roster) {
     });
 
     for (const wrestler of sorted) {
-        console.log(
-            wrestler.name,
-            "| Wins:", wrestler.wins,
-            "| Losses", wrestler.losses
-        );
+
+        // Only show wrestlers who actually had a match
+        if (wrestler.wins > 0 || wrestler.losses > 0) {
+            console.log(
+                wrestler.name,
+                "| Wins:", wrestler.wins,
+                "| Losses:", wrestler.losses
+            );
+        }
     }
 }
 
