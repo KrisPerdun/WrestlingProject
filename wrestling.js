@@ -416,13 +416,13 @@ const zelina = new Wrestler(
 );
 
 //Storing Roster in an Array[]
-const roster = [roman, cody, seth, laKnight, gunther, jey, jimmy, drew, sami, ko, logan, orton, styles, rey, balor, priest, sheamus, miz, solo, rhea, bianca, becky, charlotte, bayley, asuka, iyo, liv, nia, jade, tiffany, raquel,natalya, shayna, zelina];
+const roster = [roman, cody, seth, laKnight, gunther, jey, jimmy, drew, sami, ko, logan, orton, styles, rey, balor, priest, sheamus, miz, solo, rhea, bianca, becky, charlotte, bayley, asuka, iyo, liv, nia, jade, tiffany, raquel, natalya, shayna, zelina];
 
 function generateMatches(roster, eventName) {
     const matches = [];
-    const shuffled = roster.slice(); // copy list
+    const shuffled = roster.slice(); // copy roster so original stays safe
 
-    // Shuffle roster
+    // Shuffle roster (random order)
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const temp = shuffled[i];
@@ -430,9 +430,17 @@ function generateMatches(roster, eventName) {
         shuffled[j] = temp;
     }
 
-    for (let i = 0; i < shuffled.length; i += 2) {
+    // Only 5 matches = 10 wrestlers max
+    const maxMatches = 5;
+
+    for (let i = 0; i < maxMatches * 2; i += 2) {
         if (shuffled[i + 1]) {
-            const match = new Match(shuffled[i], shuffled[i + 1], "Singles Match", eventName);
+            const match = new Match(
+                shuffled[i],
+                shuffled[i + 1],
+                "Singles Match",
+                eventName
+            );
             matches.push(match);
         }
     }
