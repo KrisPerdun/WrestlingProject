@@ -41,51 +41,42 @@ class Match {
         this.isTitleMatch = false;
     }
 
-    startMatch() {
-        console.log("Event:", this.eventName);
-        console.log(this.wrestler1.name + " vs " + this.wrestler2.name);
-        console.log("Stipulation", this.stipulation);
-    }
-
     getWinner() {
         const winner = Math.random() > 0.5 ? this.wrestler1 : this.wrestler2;
         const loser = winner === this.wrestler1 ? this.wrestler2 : this.wrestler1;
 
         winner.recordWin();
-        loser.recordLoss()
-
-        // Title Change Logic
-        if (this.isTitleMatch && loser.title !== "None") {
-            console.log("TITLE CHANGE!"); 
-            winner.title = loser.title;
-            loser.title = "None"; 
-        }
+        loser.recordLoss();
 
         this.history.push({
             winner: winner.name,
             loser: loser.name,
             event: this.eventName
         });
-
-        console.log("Winner:", winner.name);
-        console.log("-----------");
     }
 
     rateMatch() {
         this.rating = Math.floor(Math.random() * 5) + 1;
-        console.log("Match Rating:", "⭐".repeat(this.rating));
     }
 
     reactCrowd() {
         const reactions = [
-        "🔥 HUGE POP",
-        "😐 Mixed Reaction",
-        "👎 Loud Boos",
-        "👏 Standing Ovation"
+            "🔥 HUGE POP",
+            "😐 Mixed Reaction",
+            "👎 Loud Boos",
+            "👏 Standing Ovation"
         ];
         const index = Math.floor(Math.random() * reactions.length);
         this.crowdReaction = reactions[index];
+    }
+
+    printSummary() {
+        console.log("MATCH SUMMARY:");
+        console.log(this.wrestler1.name, "vs", this.wrestler2.name);
+        console.log("Winner:", this.history[this.history.length - 1].winner);
         console.log("Crowd Reaction:", this.crowdReaction);
+        console.log("Rating:", "⭐".repeat(this.rating));
+        console.log("==========================");
     }
 }
 
@@ -116,6 +107,7 @@ class PPV {
                 match.getWinner();
                 match.reactCrowd();
                 match.rateMatch();
+                match.printSummary();
 
                 this.history.push({
                     match: match.wrestler1.name + " vs " + match.wrestler2.name,
@@ -455,9 +447,9 @@ const roster = [roman, cody, seth, laKnight, gunther, jey, jimmy, drew, sami, ko
 
 function generateMatches(roster, eventName) {
     const matches = [];
-    const shuffled = roster.slice(); // copy roster so original stays safe
+    const shuffled = roster.slice();
 
-    // Shuffle roster (random order)
+    // Shuffle roster
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const temp = shuffled[i];
@@ -465,18 +457,26 @@ function generateMatches(roster, eventName) {
         shuffled[j] = temp;
     }
 
-    // Only 5 matches = 10 wrestlers max
     const maxMatches = 5;
+    let used = [];
 
-    for (let i = 0; i < maxMatches * 2; i += 2) {
-        if (shuffled[i + 1]) {
-            const match = new Match(
-                shuffled[i],
-                shuffled[i + 1],
-                "Singles Match",
-                eventName
-            );
-            matches.push(match);
+    for (let i = 0; i < shuffled.length && matches.length < maxMatches; i++) {
+
+        if (used.includes(shuffled[i])) continue;
+
+        for (let j = i + 1; j < shuffled.length; j++) {
+
+            if (used.includes(shuffled[j])) continue;
+
+            // Only match same gender
+            if (shuffled[i].gender === shuffled[j].gender) {
+
+                const match = new Match(shuffled[i], shuffled[j], "Singles Match", eventName);
+                matches.push(match);
+
+                used.push(shuffled[i], shuffled[j]);
+                break;
+            }
         }
     }
 
@@ -484,14 +484,29 @@ function generateMatches(roster, eventName) {
 }
 
 function moveChampionsToMainEvent(matches) {
+
+    let championMatchIndex = -1;
+
     for (let i = 0; i < matches.length; i++) {
         if (matches[i].wrestler1.title !== "None" || matches[i].wrestler2.title !== "None") {
-            const mainEvent = matches.splice(i, 1)[0];
-            matches.push(mainEvent);
-            mainEvent.isTitleMatch = true;
+            championMatchIndex = i;
+            matches[i].isTitleMatch = true;
             break;
         }
     }
+
+    // If no champion found, FORCE one
+    if (championMatchIndex === -1) {
+        console.log("⚠️ No champion found. Forcing Main Event Title Match.");
+
+        const randomMatch = matches[matches.length - 1];
+        randomMatch.isTitleMatch = true;
+        return;
+    }
+
+    // Move champion match to last slot (Main Event)
+    const mainEvent = matches.splice(championMatchIndex, 1)[0];
+    matches.push(mainEvent);
 }
 
 
