@@ -3,13 +3,14 @@ const runButton = document.getElementById("runPPV");
 
 // Main wrestling class definition
 class Wrestler {
-    constructor(name, brand, finisher, catchphrase, title, gender) {
+    constructor(name, brand, finisher, catchphrase, title, gender, image) {
         this.name = name;
         this.brand = brand;
         this.finisher = finisher;
         this.catchphrase = catchphrase;
         this.title = title;
-        this.gender =gender;
+        this.gender = gender;
+        this.image = image;
 
         this.wins = 0;
         this.losses = 0;
@@ -78,17 +79,30 @@ class Match {
     }
 
     printSummary() {
-         const div = document.createElement("div");
-    div.className = "match-card";
+        const div = document.createElement("div");
+        div.className = "match-card";
 
-    div.innerHTML = `
-        <h3>${this.wrestler1.name} vs ${this.wrestler2.name}</h3>
-        <p>Winner: <b>${this.history[this.history.length - 1].winner}</b></p>
-        <p>Crowd: ${this.crowdReaction}</p>
-        <p>Rating: ${"⭐".repeat(this.rating)}</p>
-    `;
+        div.innerHTML = `
+            <div class="wrestlers">
+                <div>
+                    <img src="${this.wrestler1.image}">
+                    <p>${this.wrestler1.name}</p>
+                </div>
 
-    resultsDiv.appendChild(div);
+                <h3>VS</h3>
+
+                <div>
+                    <img src="${this.wrestler2.image}">
+                    <p>${this.wrestler2.name}</p>
+                </div>
+            </div>
+
+            <p>Winner: <b>${this.history[this.history.length - 1].winner}</b></p>
+            <p>Crowd: ${this.crowdReaction}</p>
+            <p>Rating: ${"⭐".repeat(this.rating)}</p>
+        `;
+
+        resultsDiv.appendChild(div);
     }
 }
 
@@ -151,7 +165,8 @@ const roman = new Wrestler(
     "Spear", 
     "Acknowledge Me", 
     "Undisputed WWE Universal Champion",
-    "male"
+    "male",
+    "images/male/RomanReigns.png"
 );
 
 const cody = new Wrestler(
@@ -160,7 +175,8 @@ const cody = new Wrestler(
     "Cross Rhodes",
     "Finish the Story",
     "None",
-    "male"
+    "male",
+    "images/male/CodyRhodes.png"
 );
 
 const seth = new Wrestler(
@@ -169,7 +185,8 @@ const seth = new Wrestler(
     "Curb Stomp",
     "Burn It Down",
     "World Heavyweight Champion",
-    "male"
+    "male",
+    "images/male/SethRollins.png"
 );
 
 const laKnight = new Wrestler(
@@ -178,7 +195,8 @@ const laKnight = new Wrestler(
     "BFT",
     "YEAH!",
     "None",
-    "male"
+    "male",
+    "images/male/LaKnight.png"
 );
 
 const gunther = new Wrestler(
@@ -187,7 +205,8 @@ const gunther = new Wrestler(
     "PowerBomb",
     "The Ring General",
     "Intercontinental Champion",
-    "male"
+    "male",
+    "images/male/Gunther.png"
 );
 
 const jey = new Wrestler(
@@ -196,7 +215,8 @@ const jey = new Wrestler(
     "Uso Splash",
     "Yeet!",
     "None",
-    "male"
+    "male",
+    "images/male/JeyUso.png"
 );
 
 const jimmy = new Wrestler(
@@ -205,7 +225,8 @@ const jimmy = new Wrestler(
     "Uso Splash",
     "Nobody's Bitch!",
     "None",
-    "male"
+    "male",
+    "images/male/JimmyUso.png"
 );
 
 const drew = new Wrestler(
@@ -214,7 +235,8 @@ const drew = new Wrestler(
     "Claymore Kick",
     "Scottish Warrior",
     "None",
-    "male"
+    "male",
+    "images/male/DrewMcintyre.png"
 );
 
 const sami = new Wrestler(
@@ -223,7 +245,8 @@ const sami = new Wrestler(
     "Helluva Kick",
     "Let's Go!",
     "None",
-    "male"
+    "male",
+    "images/male/SamiZayn.png"
 );
 
 const ko = new Wrestler(
@@ -232,7 +255,8 @@ const ko = new Wrestler(
     "Stunner",
     "Fight Owens Fight",
     "None",
-    "male"
+    "male",
+    "images/male/KevinOwens.png"
 );
 
 const logan = new Wrestler(
@@ -241,7 +265,8 @@ const logan = new Wrestler(
     "KO Punch",
     "Prime Time",
     "United States Champion",
-    "male"
+    "male",
+    "images/male/LoganPaul.png"
 );
 
 const orton = new Wrestler(
@@ -250,7 +275,8 @@ const orton = new Wrestler(
     "RKO",
     "The Viper",
     "None",
-    "male"
+    "male",
+    "images/male/RandyOrton.png"
 );
 
 const styles = new Wrestler(
@@ -259,7 +285,8 @@ const styles = new Wrestler(
     "Phenomenal Forearm",
     "The Phenomenal One",
     "None",
-    "male"
+    "male",
+    "images/male/AjStyles.png"
 );
 
 const rey = new Wrestler(
@@ -268,7 +295,8 @@ const rey = new Wrestler(
     "619",
     "Who's That Jumpin' Out The Sky",
     "None",
-    "male"
+    "male",
+    "images/male/ReyMysterio.png"
 );
 
 const balor = new Wrestler(
@@ -277,7 +305,8 @@ const balor = new Wrestler(
     "Coup de Grace",
     "Prince",
     "None",
-    "male"
+    "male",
+    "images/male/FinnBalor.png"
 );
 
 const priest = new Wrestler(
@@ -286,7 +315,8 @@ const priest = new Wrestler(
     "South of Heaven",
     "Archer of Infamy",
     "None",
-    "male"
+    "male",
+    "images/male/DamianPriest.png"
 );
 
 const sheamus = new Wrestler(
@@ -295,7 +325,8 @@ const sheamus = new Wrestler(
     "Brogue Kick",
     "Fella",
     "None",
-    "male"
+    "male",
+    "images/male/Sheamus.png"
 );
 
 const miz = new Wrestler(
@@ -304,7 +335,8 @@ const miz = new Wrestler(
     "Skull Crushing Finale",
     "Awesome!",
     "None",
-    "male"
+    "male",
+    "images/male/TheMiz.png"
 );
 
 const solo = new Wrestler(
@@ -313,7 +345,8 @@ const solo = new Wrestler(
     "Samoan Spike",
     "Enforcer",
     "None",
-    "male"
+    "male",
+    "images/male/SoloSikoa.png"
 );
 
 //Women Wrestlers
@@ -324,7 +357,8 @@ const rhea = new Wrestler(
     "Riptide",
     "This is My Brutality",
     "Woman's World Champion",
-    "female"
+    "female",
+    "images/female/RheaRipley.png"
 );
 
 const bianca = new Wrestler(
@@ -333,7 +367,8 @@ const bianca = new Wrestler(
     "KOD",
     "The EST of WWE",
     "None",
-    "female"
+    "female",
+    "images/female/BiancaBelair.png"
 );
 
 const becky = new Wrestler(
@@ -342,7 +377,8 @@ const becky = new Wrestler(
     "Manhandle Slam",
     "The Man",
     "None",
-    "female"
+    "female",
+    "images/female/BeckyLynch.png"
 );
 
 const charlotte = new Wrestler(
@@ -351,7 +387,8 @@ const charlotte = new Wrestler(
     "Natural Selection",
     "The Queen",
     "None",
-    "female"
+    "female",
+    "images/female/CharlotteFlair.png"
 );
 
 const bayley = new Wrestler(
@@ -360,7 +397,8 @@ const bayley = new Wrestler(
     "Rose Plant",
     "Role Model",
     "None",
-    "female"
+    "female",
+    "images/female/Bayley.png"
 );
 
 const asuka = new Wrestler(
@@ -369,7 +407,8 @@ const asuka = new Wrestler(
     "Asuka Lock",
     "Nobody is Ready for Asuka",
     "None",
-    "female"
+    "female",
+    "images/female/Asuka.png"
 );
 
 const iyo = new Wrestler(
@@ -378,7 +417,8 @@ const iyo = new Wrestler(
     "Over the Moonsault",
     "Genius of the Sky",
     "None",
-    "female"
+    "female",
+    "images/female/IyoSky.png"
 );
 
 const liv = new Wrestler(
@@ -387,7 +427,8 @@ const liv = new Wrestler(
     "Oblivion",
     "Watch Me",
     "None",
-    "female"
+    "female",
+    "images/female/LivMorgan.png"
 );
 
 const nia = new Wrestler(
@@ -396,7 +437,8 @@ const nia = new Wrestler(
     "Annihilator",
     "Irresistible Force",
     "None",
-    "female"
+    "female",
+    "images/female/NiaJax.png"
 );
 
 const jade = new Wrestler(
@@ -405,7 +447,8 @@ const jade = new Wrestler(
     "Jaded",
     "That Bitch Show",
     "None",
-    "female"
+    "female",
+    "images/female/JadeCargill.png"
 );
 
 const tiffany = new Wrestler(
@@ -414,7 +457,8 @@ const tiffany = new Wrestler(
     "Prettiest Moonsault Ever",
     "It's Tiffy Time",
     "None",
-    "female"
+    "female",
+    "images/female/TiffanyStratton.png"
 );
 
 const raquel = new Wrestler(
@@ -423,7 +467,8 @@ const raquel = new Wrestler(
     "Tejana Bomb",
     "Big Mami Cool",
     "None",
-    "female"
+    "female",
+    "images/female/RaquelRodriguez.png"
 );
 
 const natalya = new Wrestler(
@@ -432,16 +477,18 @@ const natalya = new Wrestler(
     "Sharpshooter",
     "Queen of Harts",
     "None",
-    "female"
+    "female",
+    "images/female/Natalya.png"
 );
 
-const shayna = new Wrestler(
-    "Shayna Baszler",
+const roxanne = new Wrestler(
+    "Roxanne Perez",
     "Raw",
-    "Kirifuda Clutch",
-    "Queen of Spades",
+    "Pop Rocks",
+    "The Prodigy",
     "None",
-    "female"
+    "female",
+    "images/female/RoxannePerez.png"
 );
 
 const zelina = new Wrestler(
@@ -450,11 +497,12 @@ const zelina = new Wrestler(
     "Code Red",
     "La Muñeca",
     "None",
-    "female"
+    "female",
+    "images/female/ZelinaVega.png"
 );
 
 //Storing Roster in an Array[]
-const roster = [roman, cody, seth, laKnight, gunther, jey, jimmy, drew, sami, ko, logan, orton, styles, rey, balor, priest, sheamus, miz, solo, rhea, bianca, becky, charlotte, bayley, asuka, iyo, liv, nia, jade, tiffany, raquel, natalya, shayna, zelina];
+const roster = [roman, cody, seth, laKnight, gunther, jey, jimmy, drew, sami, ko, logan, orton, styles, rey, balor, priest, sheamus, miz, solo, rhea, bianca, becky, charlotte, bayley, asuka, iyo, liv, nia, jade, tiffany, raquel, natalya, roxanne, zelina];
 
 function generateMatches(roster, eventName) {
     const matches = [];
@@ -546,8 +594,6 @@ moveChampionsToMainEvent(night2);
 wrestleMania.addNight(night1);
 wrestleMania.addNight(night2);
 
-wrestleMania.run();
-
 function showRankings(roster) {
     console.log("=== WWE POWER RANKINGS ===");
 
@@ -573,6 +619,30 @@ function showRankings(roster) {
 showRankings(roster);
 
 runButton.onclick = function() {
+
     resultsDiv.innerHTML = "";
-    wrestleMania.run()
-}
+
+    wrestleMania.nights = [];
+
+    const shuffledRoster = roster.slice();
+    for (let i = shuffledRoster.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = shuffledRoster[i];
+        shuffledRoster[i] = shuffledRoster[j];
+        shuffledRoster[j] = temp;
+    }
+
+    const rosterNight1 = shuffledRoster.slice(0, 10);
+    const rosterNight2 = shuffledRoster.slice(10, 20);
+
+    const night1 = generateMatches(rosterNight1, "WrestleMania Night 1");
+    const night2 = generateMatches(rosterNight2, "WrestleMania Night 2");
+
+    moveChampionsToMainEvent(night1);
+    moveChampionsToMainEvent(night2);
+
+    wrestleMania.addNight(night1);
+    wrestleMania.addNight(night2);
+
+    wrestleMania.run();
+};
