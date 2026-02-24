@@ -1,3 +1,6 @@
+const resultsDiv = document.getElementById("results");
+const runButton = document.getElementById("runPPV");
+
 // Main wrestling class definition
 class Wrestler {
     constructor(name, brand, finisher, catchphrase, title, gender) {
@@ -58,25 +61,34 @@ class Match {
     rateMatch() {
         this.rating = Math.floor(Math.random() * 5) + 1;
     }
-
+            //,
     reactCrowd() {
-        const reactions = [
-            "🔥 HUGE POP",
-            "😐 Mixed Reaction",
-            "👎 Loud Boos",
-            "👏 Standing Ovation"
-        ];
-        const index = Math.floor(Math.random() * reactions.length);
-        this.crowdReaction = reactions[index];
+        if (this.rating === 5) {
+            this.crowdReaction = "👏 Standing Ovation";
+        }
+        else if (this.rating === 4) {
+            this.crowdReaction = "🔥 HUGE POP";
+        }
+        else if (this.rating === 3) {
+            this.crowdReaction =  "😐 Mixed Reaction";
+        }
+        else {
+            this.crowdReaction = "👎 Loud Boos";
+        }
     }
 
     printSummary() {
-        console.log("MATCH SUMMARY:");
-        console.log(this.wrestler1.name, "vs", this.wrestler2.name);
-        console.log("Winner:", this.history[this.history.length - 1].winner);
-        console.log("Crowd Reaction:", this.crowdReaction);
-        console.log("Rating:", "⭐".repeat(this.rating));
-        console.log("==========================");
+         const div = document.createElement("div");
+    div.className = "match-card";
+
+    div.innerHTML = `
+        <h3>${this.wrestler1.name} vs ${this.wrestler2.name}</h3>
+        <p>Winner: <b>${this.history[this.history.length - 1].winner}</b></p>
+        <p>Crowd: ${this.crowdReaction}</p>
+        <p>Rating: ${"⭐".repeat(this.rating)}</p>
+    `;
+
+    resultsDiv.appendChild(div);
     }
 }
 
@@ -103,10 +115,9 @@ class PPV {
             console.log("Night", nightNumber);
 
             for (const match of night) {
-                match.startMatch();
                 match.getWinner();
-                match.reactCrowd();
                 match.rateMatch();
+                match.reactCrowd();
                 match.printSummary();
 
                 this.history.push({
@@ -560,3 +571,8 @@ function showRankings(roster) {
 }
 
 showRankings(roster);
+
+runButton.onclick = function() {
+    resultsDiv.innerHTML = "";
+    wrestleMania.run()
+}

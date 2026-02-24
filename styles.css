@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: gold;
+}
+
+button {
+    padding:10px 20px;
+    font-size: 16px;
+    background: crimson;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: gold;
+    color: black;
+}
+
+.match-card {
+    background: #111;
+    padding: 10px;
+    margin: 10px auto;
+    width: 60%;
+    border-radius: 10px;
+}
