@@ -79,31 +79,41 @@ class Match {
     }
 
     printSummary() {
+
         const div = document.createElement("div");
         div.className = "match-card";
 
+        if (this.isTitleMatch) {
+            div.classList.add("main-event");
+        }
+
         div.innerHTML = `
-            <div class="wrestlers">
+            <div class="match-images">
+
                 <div>
                     <img src="${this.wrestler1.image}">
-                    <p>${this.wrestler1.name}</p>
+                    <h2>${this.wrestler1.name}</h2>
                 </div>
 
-                <h3>VS</h3>
+                <div class="vs-text">VS</div>
 
                 <div>
                     <img src="${this.wrestler2.image}">
-                    <p>${this.wrestler2.name}</p>
+                    <h2>${this.wrestler2.name}</hh2>
                 </div>
+
             </div>
 
-            <p>Winner: <b>${this.history[this.history.length - 1].winner}</b></p>
+            <p class="winner">
+                Winner: <b>${this.history[this.history.length - 1].winner}</b>
+            </p>
+
             <p>Crowd: ${this.crowdReaction}</p>
             <p>Rating: ${"⭐".repeat(this.rating)}</p>
         `;
 
         resultsDiv.appendChild(div);
-    }
+    }   
 }
 
 // PPV Class Definition
@@ -573,26 +583,6 @@ function moveChampionsToMainEvent(matches) {
 // Creating instances of PPV and running it
 const wrestleMania = new PPV("WrestleMania");
 
-const shuffledRoster = roster.slice();
-for (let i = shuffledRoster.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = shuffledRoster[i];
-    shuffledRoster[i] = shuffledRoster[j];
-    shuffledRoster[j] = temp;
-}
-
-// Split roster into two groups
-const rosterNight1 = shuffledRoster.slice(0, 10);  // 10 wrestlers = 5 matches
-const rosterNight2 = shuffledRoster.slice(10, 20); // next 10 wrestlers
-
-const night1 = generateMatches(rosterNight1, "WrestleMania Night 1");
-const night2 = generateMatches(rosterNight2, "WrestleMania Night 2");
-
-moveChampionsToMainEvent(night1);
-moveChampionsToMainEvent(night2);
-
-wrestleMania.addNight(night1);
-wrestleMania.addNight(night2);
 
 function showRankings(roster) {
     console.log("=== WWE POWER RANKINGS ===");

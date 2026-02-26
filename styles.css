@@ -1,9 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
-    background: black;
+    background: radial-gradient(circle at top, #1a0000, #000000);
+    font-family: Impact, sans-serif;
     color: white;
     text-align: center;
-    padding: 20px;
 }
 
 h1 {
@@ -25,16 +24,6 @@ button:hover {
     color: black;
 }
 
-.match-card {
-    background: #222;
-    border: 2px solid gold;
-    padding: 10px;
-    margin: 15px auto;
-    width: 350px;
-    border-radius: 10px;
-    color: white;
-}
-
 .wrestlers {
     display: flex;
     justify-content: space-around;
@@ -42,6 +31,58 @@ button:hover {
 }
 
 .wrestlers img {
-    width: 80px;
+    width: 1000px;
     border-radius: 10px;
+}
+
+.main-title {
+    font-size: 3rem;
+    margin-top: 20px;
+    color: gold;
+    text-shadow: 0 0 15px red;
+}
+
+.ppv-button {
+    background: gold;
+    color: black;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    margin: 20px;
+    font-weight: bold;
+}
+
+.match-card {
+    background: linear-gradient(to right, #111, #300000, #111);
+    border: 3px solid gold;
+    margin: 30px auto;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0 0 20px red;
+}
+
+.match-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.match-images img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px black;
+}
+
+.vs-text {
+    font-size: 2rem;
+    color: red;
+    text-shadow: 0 0 10px gold;
+}
+
+.main-event {
+    border: 5px solid gold;
+    box-shadow: 0 0 30px gold;
 }
