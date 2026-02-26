@@ -86,3 +86,41 @@ button:hover {
     border: 5px solid gold;
     box-shadow: 0 0 30px gold;
 }
+
+/* Fade in animation */
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Main Event Banner */
+.main-banner {
+    font-size: 1.5rem;
+    color: gold;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px red;
+}
+
+/* Championship Belt */
+.belt {
+    width: 120px;
+    display: block;
+    margin: 0 auto 15px auto;
+}
+
+/* Rating Glows */
+.glow-5 {
+    box-shadow: 0 0 40px gold;
+}
+
+.glow-4 {
+    box-shadow: 0 0 30px orange;
+}
+
+.glow-2 {
+    box-shadow: 0 0 25px crimson;
+}

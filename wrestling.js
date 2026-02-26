@@ -1,4 +1,5 @@
 const resultsDiv = document.getElementById("results");
+const entranceSound = new Audio("sounds/entrance.mp3");
 const runButton = document.getElementById("runPPV");
 
 // Main wrestling class definition
@@ -81,13 +82,30 @@ class Match {
     printSummary() {
 
         const div = document.createElement("div");
-        div.className = "match-card";
+        div.className = "match-card fade-in";
 
+        // MAIN EVENT banner
+        let mainEventBanner = "";
         if (this.isTitleMatch) {
             div.classList.add("main-event");
+            mainEventBanner = `<div class="main-banner">🔥 MAIN EVENT 🔥</div>`;
         }
 
+        // Belt display if title match
+        let beltHTML = "";
+        if (this.isTitleMatch) {
+            beltHTML = `<img src="titles/UndisputedWWEChampionship.png" class="belt">`;
+        }
+
+        // Glow based on rating
+        if (this.rating === 5) div.classList.add("glow-5");
+        if (this.rating === 4) div.classList.add("glow-4");
+        if (this.rating <= 2) div.classList.add("glow-2");
+
         div.innerHTML = `
+            ${mainEventBanner}
+            ${beltHTML}
+
             <div class="match-images">
 
                 <div>
@@ -99,7 +117,7 @@ class Match {
 
                 <div>
                     <img src="${this.wrestler2.image}">
-                    <h2>${this.wrestler2.name}</hh2>
+                    <h2>${this.wrestler2.name}</h2>
                 </div>
 
             </div>
@@ -113,7 +131,7 @@ class Match {
         `;
 
         resultsDiv.appendChild(div);
-    }   
+    }
 }
 
 // PPV Class Definition
@@ -609,6 +627,9 @@ function showRankings(roster) {
 showRankings(roster);
 
 runButton.onclick = function() {
+    
+    entranceSound.currentTime = 0;
+    entranceSound.play();
 
     resultsDiv.innerHTML = "";
 
