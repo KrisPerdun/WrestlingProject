@@ -4,7 +4,7 @@ const runButton = document.getElementById("runPPV");
 
 // Main wrestling class definition
 class Wrestler {
-    constructor(name, brand, finisher, catchphrase, title, gender, image) {
+    constructor(name, brand, finisher, catchphrase, title, gender, image, height, weight, hometown) {
         this.name = name;
         this.brand = brand;
         this.finisher = finisher;
@@ -12,6 +12,9 @@ class Wrestler {
         this.title = title;
         this.gender = gender;
         this.image = image;
+        this.height = height
+        this.weight = weight;
+        this.hometown = hometown;
 
         this.wins = 0;
         this.losses = 0;
@@ -87,14 +90,21 @@ class Match {
         // MAIN EVENT banner
         let mainEventBanner = "";
         if (this.isTitleMatch) {
-            div.classList.add("main-event");
             mainEventBanner = `<div class="main-banner">🔥 MAIN EVENT 🔥</div>`;
         }
 
         // Belt display if title match
         let beltHTML = "";
+
         if (this.isTitleMatch) {
-            beltHTML = `<img src="titles/UndisputedWWEChampionship.png" class="belt">`;
+            let beltImage = ""
+        
+            if (this.wrestler1.gender === "male") {
+                beltImage = "images/titles/UndisputedWWEChampionship.png";
+            } else {
+                beltImage = "images/titles/WomansChampionship.png";
+            }
+            beltHTML = `<img src = "${beltImage}" class = "belt">`;
         }
 
         // Glow based on rating
@@ -192,9 +202,12 @@ const roman = new Wrestler(
     "SmackDown", 
     "Spear", 
     "Acknowledge Me", 
-    "Undisputed WWE Universal Champion",
+    "None",
     "male",
-    "images/male/RomanReigns.png"
+    "images/male/RomanReigns.png",
+    "6'3",
+    "265",
+    "Pensacola, Florida"
 );
 
 const cody = new Wrestler(
@@ -204,7 +217,10 @@ const cody = new Wrestler(
     "Finish the Story",
     "None",
     "male",
-    "images/male/CodyRhodes.png"
+    "images/male/CodyRhodes.png",
+    "6'2",
+    "222",
+    'Atlanta, Georgia'
 );
 
 const seth = new Wrestler(
@@ -212,9 +228,12 @@ const seth = new Wrestler(
     "Raw", 
     "Curb Stomp",
     "Burn It Down",
-    "World Heavyweight Champion",
+    "None",
     "male",
-    "images/male/SethRollins.png"
+    "images/male/SethRollins.png",
+    "6'1",
+    "225",
+    "Davenport, Iowa"
 );
 
 const laKnight = new Wrestler(
@@ -224,7 +243,10 @@ const laKnight = new Wrestler(
     "YEAH!",
     "None",
     "male",
-    "images/male/LaKnight.png"
+    "images/male/LaKnight.png",
+    "6'1",
+    "240",
+    "Hagerstown, Maryland"
 );
 
 const gunther = new Wrestler(
@@ -232,9 +254,12 @@ const gunther = new Wrestler(
     "Raw",
     "PowerBomb",
     "The Ring General",
-    "Intercontinental Champion",
+    "None",
     "male",
-    "images/male/Gunther.png"
+    "images/male/Gunther.png",
+    "6'4",
+    "250",
+    "Vienna, Austria"
 );
 
 const jey = new Wrestler(
@@ -244,7 +269,10 @@ const jey = new Wrestler(
     "Yeet!",
     "None",
     "male",
-    "images/male/JeyUso.png"
+    "images/male/JeyUso.png",
+    "6'2",
+    "240",
+    "San Francisco, California"
 );
 
 const jimmy = new Wrestler(
@@ -254,7 +282,10 @@ const jimmy = new Wrestler(
     "Nobody's Bitch!",
     "None",
     "male",
-    "images/male/JimmyUso.png"
+    "images/male/JimmyUso.png",
+    "6'3",
+    "250",
+    "San Francisco, California"
 );
 
 const drew = new Wrestler(
@@ -262,9 +293,12 @@ const drew = new Wrestler(
     "Raw",
     "Claymore Kick",
     "Scottish Warrior",
-    "None",
+    "Undisputed WWE Universal Champion",
     "male",
-    "images/male/DrewMcintyre.png"
+    "images/male/DrewMcintyre.png",
+    "6'3",
+    "275",
+    "Ayr, Scotland"
 );
 
 const sami = new Wrestler(
@@ -274,7 +308,10 @@ const sami = new Wrestler(
     "Let's Go!",
     "None",
     "male",
-    "images/male/SamiZayn.png"
+    "images/male/SamiZayn.png",
+    "6'1",
+    "212",
+    "Montreal, Quebec"
 );
 
 const ko = new Wrestler(
@@ -284,7 +321,10 @@ const ko = new Wrestler(
     "Fight Owens Fight",
     "None",
     "male",
-    "images/male/KevinOwens.png"
+    "images/male/KevinOwens.png",
+    "6'0",
+    "266",
+    "Marieville, Quebec, Canada"
 );
 
 const logan = new Wrestler(
@@ -292,9 +332,12 @@ const logan = new Wrestler(
     "SmackDown",
     "KO Punch",
     "Prime Time",
-    "United States Champion",
+    "None",
     "male",
-    "images/male/LoganPaul.png"
+    "images/male/LoganPaul.png",
+    "6'2",
+    "220",
+    "Westlake, Ohio"
 );
 
 const orton = new Wrestler(
@@ -304,7 +347,10 @@ const orton = new Wrestler(
     "The Viper",
     "None",
     "male",
-    "images/male/RandyOrton.png"
+    "images/male/RandyOrton.png",
+    "6'5",
+    "275",
+    "St. Louis, Missouri"
 );
 
 const styles = new Wrestler(
@@ -314,7 +360,10 @@ const styles = new Wrestler(
     "The Phenomenal One",
     "None",
     "male",
-    "images/male/AjStyles.png"
+    "images/male/AjStyles.png",
+    "5'11",
+    "220",
+    "Gainsville, Georgia"
 );
 
 const rey = new Wrestler(
@@ -324,7 +373,10 @@ const rey = new Wrestler(
     "Who's That Jumpin' Out The Sky",
     "None",
     "male",
-    "images/male/ReyMysterio.png"
+    "images/male/ReyMysterio.png",
+    "5'6",
+    "175",
+    "San Diego, California"
 );
 
 const balor = new Wrestler(
@@ -334,7 +386,10 @@ const balor = new Wrestler(
     "Prince",
     "None",
     "male",
-    "images/male/FinnBalor.png"
+    "images/male/FinnBalor.png",
+    "5'11",
+    "190",
+    "Bray, County Wicklow, Ireland"
 );
 
 const priest = new Wrestler(
@@ -344,7 +399,10 @@ const priest = new Wrestler(
     "Archer of Infamy",
     "None",
     "male",
-    "images/male/DamianPriest.png"
+    "images/male/DamianPriest.png",
+    "6'6",
+    "250",
+    "New York City, New York"
 );
 
 const sheamus = new Wrestler(
@@ -354,7 +412,10 @@ const sheamus = new Wrestler(
     "Fella",
     "None",
     "male",
-    "images/male/Sheamus.png"
+    "images/male/Sheamus.png",
+    "6'4",
+    "267",
+    "Dublin, Ireland"
 );
 
 const miz = new Wrestler(
@@ -364,7 +425,10 @@ const miz = new Wrestler(
     "Awesome!",
     "None",
     "male",
-    "images/male/TheMiz.png"
+    "images/male/TheMiz.png",
+    "6'2",
+    "221",
+    "Cleveland, Ohio"
 );
 
 const solo = new Wrestler(
@@ -374,7 +438,10 @@ const solo = new Wrestler(
     "Enforcer",
     "None",
     "male",
-    "images/male/SoloSikoa.png"
+    "images/male/SoloSikoa.png",
+    "6'2",
+    "250",
+    "Las Vegas, Nevada"
 );
 
 //Women Wrestlers
@@ -384,7 +451,7 @@ const rhea = new Wrestler(
     "Raw",
     "Riptide",
     "This is My Brutality",
-    "Woman's World Champion",
+    "None",
     "female",
     "images/female/RheaRipley.png"
 );
@@ -474,7 +541,7 @@ const jade = new Wrestler(
     "SmackDown",
     "Jaded",
     "That Bitch Show",
-    "None",
+    "WWE Womans Championship",
     "female",
     "images/female/JadeCargill.png"
 );
@@ -575,28 +642,21 @@ function moveChampionsToMainEvent(matches) {
     let championMatchIndex = -1;
 
     for (let i = 0; i < matches.length; i++) {
-        if (matches[i].wrestler1.title !== "None" || matches[i].wrestler2.title !== "None") {
+        if (
+            matches[i].wrestler1.title !== "None" ||
+            matches[i].wrestler2.title !== "None"
+        ) {
             championMatchIndex = i;
             matches[i].isTitleMatch = true;
             break;
         }
     }
 
-    // If no champion found, FORCE one
-    if (championMatchIndex === -1) {
-        console.log("⚠️ No champion found. Forcing Main Event Title Match.");
+    if (championMatchIndex === -1) return;
 
-        const randomMatch = matches[matches.length - 1];
-        randomMatch.isTitleMatch = true;
-        return;
-    }
-
-    // Move champion match to last slot (Main Event)
     const mainEvent = matches.splice(championMatchIndex, 1)[0];
     matches.push(mainEvent);
 }
-
-
 
 // Creating instances of PPV and running it
 const wrestleMania = new PPV("WrestleMania");

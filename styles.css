@@ -31,7 +31,7 @@ button:hover {
 }
 
 .wrestlers img {
-    width: 1000px;
+    width: 100px;
     border-radius: 10px;
 }
 
@@ -69,9 +69,10 @@ button:hover {
     gap: 40px;
 }
 
-.match-images img {
-    width: 300px;
-    height: auto;
+.match-card .match-images img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 0 20px black;
 }
@@ -80,11 +81,6 @@ button:hover {
     font-size: 2rem;
     color: red;
     text-shadow: 0 0 10px gold;
-}
-
-.main-event {
-    border: 5px solid gold;
-    box-shadow: 0 0 30px gold;
 }
 
 /* Fade in animation */
@@ -107,7 +103,7 @@ button:hover {
 
 /* Championship Belt */
 .belt {
-    width: 120px;
+    width: 180px;
     display: block;
     margin: 0 auto 15px auto;
 }
