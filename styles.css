@@ -24,35 +24,6 @@ button:hover {
     color: black;
 }
 
-.wrestlers {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.wrestlers img {
-    width: 100px;
-    border-radius: 10px;
-}
-
-.main-title {
-    font-size: 3rem;
-    margin-top: 20px;
-    color: gold;
-    text-shadow: 0 0 15px red;
-}
-
-.ppv-button {
-    background: gold;
-    color: black;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border: none;
-    cursor: pointer;
-    margin: 20px;
-    font-weight: bold;
-}
-
 .match-card {
     background: linear-gradient(to right, #111, #300000, #111);
     border: 3px solid gold;
@@ -62,11 +33,17 @@ button:hover {
     box-shadow: 0 0 20px red;
 }
 
+.match-card h2 {
+    -webkit-text-stroke-color: red;
+    -webkit-text-stroke-width: 1px;
+}
+
 .match-images {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 40px;
+    
 }
 
 .match-card .match-images img {
@@ -119,4 +96,26 @@ button:hover {
 
 .glow-2 {
     box-shadow: 0 0 25px crimson;
+}
+
+.wrestler-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrestler-stats {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: gold;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid gold;
+}
+
+.wrestler-stats p {
+    margin: 2px 0;
+    -webkit-text-stroke-color: red;
+    -webkit-text-stroke-width: 1px;
 }

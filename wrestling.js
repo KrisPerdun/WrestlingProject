@@ -15,24 +15,7 @@ class Wrestler {
         this.height = height
         this.weight = weight;
         this.hometown = hometown;
-
-        this.wins = 0;
-        this.losses = 0;
-        this.rivals =[];
-    }
-
-    intro() {
-        console.log(this.name + " says " + this.catchphrase);
-    }
-
-    recordWin() {
-        this.wins++;
-    }
- 
-    recordLoss() {
-        this.losses++;
-    }  
-     
+    }   
 }
 
 // Match class definition
@@ -52,9 +35,6 @@ class Match {
     getWinner() {
         const winner = Math.random() > 0.5 ? this.wrestler1 : this.wrestler2;
         const loser = winner === this.wrestler1 ? this.wrestler2 : this.wrestler1;
-
-        winner.recordWin();
-        loser.recordLoss();
 
         this.history.push({
             winner: winner.name,
@@ -121,6 +101,11 @@ class Match {
                 <div>
                     <img src="${this.wrestler1.image}">
                     <h2>${this.wrestler1.name}</h2>
+                    <div class = "wrestler-stats">
+                        <p>Height: ${this.wrestler1.height}</p>
+                        <p>Weight: ${this.wrestler1.weight}</p>
+                        <p>From: ${this.wrestler1.hometown}</p>
+                    </div>
                 </div>
 
                 <div class="vs-text">VS</div>
@@ -128,6 +113,11 @@ class Match {
                 <div>
                     <img src="${this.wrestler2.image}">
                     <h2>${this.wrestler2.name}</h2>
+                    <div class = "wrestler-stats">
+                        <p>Height: ${this.wrestler2.height}</p>
+                        <p>Weight: ${this.wrestler2.weight}</p>
+                        <p>From: ${this.wrestler2.hometown}</p>
+                    </div>
                 </div>
 
             </div>
@@ -171,25 +161,9 @@ class PPV {
                 match.rateMatch();
                 match.reactCrowd();
                 match.printSummary();
-
-                this.history.push({
-                    match: match.wrestler1.name + " vs " + match.wrestler2.name,
-                    event: this.name
-                });
-
-                if (match.rating > bestRating) {
-                    bestRating = match.rating;
-                    bestMatch = match;
-                }
             }
 
             nightNumber++;
-        }
-
-        if (bestMatch) {
-            console.log("MATCH OF THE NIGHT:");
-            console.log(bestMatch.wrestler1.name, "vs", bestMatch.wrestler2.name);
-            console.log("Rating:", "⭐".repeat(bestRating));
         }
     }
 }
@@ -453,7 +427,10 @@ const rhea = new Wrestler(
     "This is My Brutality",
     "None",
     "female",
-    "images/female/RheaRipley.png"
+    "images/female/RheaRipley.png",
+    "5'7",
+    "137",
+    "Adelaide, South Australia"
 );
 
 const bianca = new Wrestler(
@@ -463,7 +440,10 @@ const bianca = new Wrestler(
     "The EST of WWE",
     "None",
     "female",
-    "images/female/BiancaBelair.png"
+    "images/female/BiancaBelair.png",
+    "5'7",
+    "165",
+    "Knoxville, Tennessee"
 );
 
 const becky = new Wrestler(
@@ -473,7 +453,10 @@ const becky = new Wrestler(
     "The Man",
     "None",
     "female",
-    "images/female/BeckyLynch.png"
+    "images/female/BeckyLynch.png",
+    "5'6",
+    "135",
+    "Limerick, Ireland"
 );
 
 const charlotte = new Wrestler(
@@ -483,7 +466,10 @@ const charlotte = new Wrestler(
     "The Queen",
     "None",
     "female",
-    "images/female/CharlotteFlair.png"
+    "images/female/CharlotteFlair.png",
+    "5'10",
+    "143",
+    "Charlotte, North Carolina"
 );
 
 const bayley = new Wrestler(
@@ -493,7 +479,10 @@ const bayley = new Wrestler(
     "Role Model",
     "None",
     "female",
-    "images/female/Bayley.png"
+    "images/female/Bayley.png",
+    "5'6",
+    "125",
+    "San Jose, California"
 );
 
 const asuka = new Wrestler(
@@ -503,7 +492,10 @@ const asuka = new Wrestler(
     "Nobody is Ready for Asuka",
     "None",
     "female",
-    "images/female/Asuka.png"
+    "images/female/Asuka.png",
+    "5'3",
+    "137",
+    "Osaka, Japan"
 );
 
 const iyo = new Wrestler(
@@ -513,7 +505,10 @@ const iyo = new Wrestler(
     "Genius of the Sky",
     "None",
     "female",
-    "images/female/IyoSky.png"
+    "images/female/IyoSky.png",
+    "5'1",
+    "119",
+    "Kamakura, Kanagawa, Japan"
 );
 
 const liv = new Wrestler(
@@ -523,7 +518,10 @@ const liv = new Wrestler(
     "Watch Me",
     "None",
     "female",
-    "images/female/LivMorgan.png"
+    "images/female/LivMorgan.png",
+    "5'3",
+    "125",
+    "Morristown, New Jersey"
 );
 
 const nia = new Wrestler(
@@ -533,7 +531,10 @@ const nia = new Wrestler(
     "Irresistible Force",
     "None",
     "female",
-    "images/female/NiaJax.png"
+    "images/female/NiaJax.png",
+    "6'0",
+    "272",
+    "San Diego, California"
 );
 
 const jade = new Wrestler(
@@ -543,7 +544,10 @@ const jade = new Wrestler(
     "That Bitch Show",
     "WWE Womans Championship",
     "female",
-    "images/female/JadeCargill.png"
+    "images/female/JadeCargill.png",
+    "5'10",
+    "160",
+    "Vero Beach, Florida"
 );
 
 const tiffany = new Wrestler(
@@ -553,7 +557,10 @@ const tiffany = new Wrestler(
     "It's Tiffy Time",
     "None",
     "female",
-    "images/female/TiffanyStratton.png"
+    "images/female/TiffanyStratton.png",
+    "5'7",
+    "143",
+    "Prior Lake, Minnesota"
 );
 
 const raquel = new Wrestler(
@@ -563,7 +570,10 @@ const raquel = new Wrestler(
     "Big Mami Cool",
     "None",
     "female",
-    "images/female/RaquelRodriguez.png"
+    "images/female/RaquelRodriguez.png",
+    "6'0",
+    "175",
+    "La Feria, Texas"
 );
 
 const natalya = new Wrestler(
@@ -573,7 +583,10 @@ const natalya = new Wrestler(
     "Queen of Harts",
     "None",
     "female",
-    "images/female/Natalya.png"
+    "images/female/Natalya.png",
+    "5'5",
+    "135",
+    "Calgary, ALberta, Canada"
 );
 
 const roxanne = new Wrestler(
@@ -583,7 +596,10 @@ const roxanne = new Wrestler(
     "The Prodigy",
     "None",
     "female",
-    "images/female/RoxannePerez.png"
+    "images/female/RoxannePerez.png",
+    "5'1",
+    "125",
+    "Laredo, Texas"
 );
 
 const zelina = new Wrestler(
@@ -593,7 +609,10 @@ const zelina = new Wrestler(
     "La Muñeca",
     "None",
     "female",
-    "images/female/ZelinaVega.png"
+    "images/female/ZelinaVega.png",
+    "4'11",
+    "105",
+    "Queens, New York"
 );
 
 //Storing Roster in an Array[]
@@ -660,31 +679,6 @@ function moveChampionsToMainEvent(matches) {
 
 // Creating instances of PPV and running it
 const wrestleMania = new PPV("WrestleMania");
-
-
-function showRankings(roster) {
-    console.log("=== WWE POWER RANKINGS ===");
-
-    const sorted = roster.slice();
-
-    sorted.sort(function(a, b){
-        return b.wins - a.wins;
-    });
-
-    for (const wrestler of sorted) {
-
-        // Only show wrestlers who actually had a match
-        if (wrestler.wins > 0 || wrestler.losses > 0) {
-            console.log(
-                wrestler.name,
-                "| Wins:", wrestler.wins,
-                "| Losses:", wrestler.losses
-            );
-        }
-    }
-}
-
-showRankings(roster);
 
 runButton.onclick = function() {
     
