@@ -123,7 +123,7 @@ class Match {
             </div>
 
             <p class="winner">
-                Winner: <b>${this.history[this.history.length - 1].winner}</b>
+                Winner: ${this.history[this.history.length - 1].winner}
             </p>
 
             <p>Crowd: ${this.crowdReaction}</p>
@@ -149,8 +149,6 @@ class PPV {
     run() {
          console.log("PPV:", this.name);
 
-        let bestMatch = null;
-        let bestRating = 0;
         let nightNumber = 1;
 
         for (const night of this.nights) {

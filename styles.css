@@ -1,6 +1,6 @@
 body {
     background: radial-gradient(circle at top, #1a0000, #000000);
-    font-family: Impact, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     color: white;
     text-align: center;
 }
@@ -52,6 +52,11 @@ button:hover {
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 0 20px black;
+}
+
+.match-images img:hover {
+    transform:translateY(-5px);
+    transition: all 0.3s ease-in-out;
 }
 
 .vs-text {
@@ -117,5 +122,5 @@ button:hover {
 .wrestler-stats p {
     margin: 2px 0;
     -webkit-text-stroke-color: red;
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.3px;
 }
